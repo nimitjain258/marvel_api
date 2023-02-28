@@ -5,7 +5,7 @@ Access marvel API to store data then create a new API to retrieve this data from
 
 This A3 REST API allows to interact with the data.csv dataset, retrieving data from it, creating new entries or deleting existing data. For these last two actions though you will need an Authentification.
 
-# 1. How to access this API?
+### 1. How to access this API?
 Fot the A3 API to work you will need to execute the code on the API_creation_code.py .py file.
 
 You can do this either by openning a new terminal window and launching the script by running API_creation_code.py. (CHANGE NAME), or by creating a jupyter notebook and copy pasting the code on the .py file to run it.
@@ -16,7 +16,7 @@ After you execute the code, the A3 API should be running on your local port 5000
 
 From that point on, for every request that you want to make to the API, you should use the base URL: http://127.0.0.1:5000/ (or what is the same http://localhost:5000/).
 
-# 2. Dataset
+### 2. Dataset
 The dataset with wich the A3 API interacts includes the fields below:
 
 Character Name refers to each Marvel Character's name in str form
@@ -26,7 +26,7 @@ Total Available Series refers to the total number of series each character is pa
 Total Available Comics refers to the total number of events each character is part of, in int form
 Price of the Most Expensive Comic refers to the price of the most expensive comic that each character is on, in float form and USD value
 
-# 3. Authentification
+### 3. Authentification
 To access the A3 API and simply retrieve data from it, you don't need any form of authentification.
 
 However, if you want to create new entries into the dataset or delete/change existing ones you will need to sign up and log in. The authentification schema that this API uses is an OAuth system, by which everytime that you log in, you will recieve an access token with a limited duration to work with.
@@ -51,7 +51,7 @@ token = log_in["token"]
 
 Your token is valid for 1 hour!. After that, a new sign-up is required.
 
-# 4. Resources
+### 4. Resources
 You can access 4 resources using the API:
 
 Characters: contains the information on several Marvel Characters and their IDs, number of comics, series and events they appear on, and the price of their most expensive comic.
@@ -62,7 +62,7 @@ Log In: when logged in, you will recieve a token that will allow you to modify t
 
 TokenUpTime: allows you to see your remaining uptime after log in through a token.
 
-# 5. Making Requests
+### 5. Making Requests
 Types of requests available
 
 Format of attributes within the requests
@@ -73,28 +73,28 @@ The A3 API will most likely run on your local port 5000, so the basic url for yo
 
 The basic format of any request will be: request.[method](url = basicURL/endpoint, params = {}) where params corresponds to the different parameters that the request should take into account, in a dictionary format.
 
-# 5.1 Sign Up Endpoint:
+### 5.1 Sign Up Endpoint:
 This endpoint is used to create a new account. The only action available here is a post request, wherby your chosen email and password information for the account will be stored in the API's database to recognize you when you log in.
 
 This can be done by running the following code on your Jupyter Notebook:
 
 requests.post("http://localhost:5000/signup" , params = {"email": "your@email", "password": "yourPassword"})
 
-# 5.2 Log In Endpoint:
+### 5.2 Log In Endpoint:
 This endpoint is used to log in into your existing user, to be able to manipulate the Characters dataset. The only action available here is a get request, whereby your email and password are checked, and you get an access token as a result, with validity of 1 hour.
 
 This can be done by running the following code on your Jupyter Notebook:
 
 requests.get("http://localhost:5000/login" , params = {"email": "your@email", "password": "yourPassword"})
 
-# 5.3 Token Up Time Endpoint:
+### 5.3 Token Up Time Endpoint:
 This endpoint can be used to check the remaining uptime of your access token. The only action available here is a get request, whereby the validity of the access token that you provide is checked. You will get as a result the remaining valid time that the token has left, and once this time expires, you will be logged out of the API.
 
 This can be done by running the following code on your Jupyter Notebook:
 
 requests.get("http://localhost:5000/tokenuptime" , headers = {"Authorization": "Bearer" + "yourToken"})
 
-# 5.4 Characters Endpoint:
+### 5.4 Characters Endpoint:
 Within the Characters Resource, you will be able to make:
 
 Get request: to retrieve data of Characters from the Dataset
@@ -128,7 +128,7 @@ This can be done by running the following code on your Jupyter Notebook:
 
 requests.delete("http://localhost:5000/characters" , params = {"character_name": ["Agent Brand", "Adam Warlock"]}, headers = {"Authorization": "Bearer" + "yourToken"}})
 
-# 6. Results
+### 6. Results
 The A3 API uses conventional HTTP response codes to indicate the success or failure of an API request. In general, codes in the range 2xx indicate success, while codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.).
 
 The most common results you will get are:
